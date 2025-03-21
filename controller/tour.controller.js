@@ -11,7 +11,12 @@ let getTours = errorHandler(async (req, res, next) => {
   resposcha(res, 200, Tours);
 });
 let addTour = errorHandler(async (req, res, next) => {
-  let Tour = await ToursModel.create(req.body);
+  console.log(req.user);
+
+  let Tour = await ToursModel.create({
+    ...req.body,
+    guides: [req.user.id, ...req.body.guides],
+  });
   resposcha(res, 201, Tour);
 });
 

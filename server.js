@@ -3,6 +3,7 @@ const app = express();
 const mongana = require("morgan");
 const tourRouter = require("./routes/tour.route.js");
 const authRouter = require("./routes/auth.route.js");
+const userRouter = require("./routes/user.route.js");
 const env = require("dotenv").config();
 
 const TOur = require("./models/user.model.js");
@@ -18,6 +19,7 @@ app.use(mongana("dev"));
 
 app.use("/api/v1/tours", tourRouter);
 app.use("/api/v1/auth", authRouter);
+app.use("/api/v1/users", userRouter);
 app.use(errController);
 
 process.on("unhandledRejection", (err) => {

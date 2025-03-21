@@ -40,10 +40,19 @@ let login = errorHandler(async (req, res, next) => {
   let token = await jwt.sign(
     { id: user.id, role: user.role },
     process.env.JWT_TOKEN_SECRET_KEY,
-    { expiresIn: "1h" }
+    { expiresIn: process.env.JWT_EXP_TIME }
   );
   console.log(token);
 
   resposcha(res, 200, { user, token });
 });
-module.exports = { registerUser, login };
+
+let getProfile = errorHandler(async (req, res, next) => {
+  let user = req.user;
+  console.log(user);
+
+  user = await User.findOne({ _id: user.id });
+
+  res.status(200).json({ user });
+});
+module.exports = { registerUser, login, getProfile };
