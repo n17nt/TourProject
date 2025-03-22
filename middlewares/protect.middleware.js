@@ -13,6 +13,7 @@ let protect = errorHandler(async (req, res, next) => {
   if (!token) throw new Error("Token olinmadi");
   let checking = await jwt.verify(token, process.env.JWT_TOKEN_SECRET_KEY);
   let user = await User.findById(checking.id).select("active role username");
+
   if (!user || !user.active) {
     throw new Error("Siz tizim mavjud emassiz ");
   }

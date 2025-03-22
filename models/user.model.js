@@ -20,7 +20,7 @@ let TourGudeSchema = mongoose.Schema(
       validate: [validator.isStrongPassword, "Kuchliroq parol qo'ying"],
     },
     role: { type: String, enum: ["user", "guide", "admin"], default: "user" },
-    refreshToken: { type: String },
+    refreshToken: { type: String, select: false },
     active: { type: Boolean, default: true, select: false },
     //   tours: [{ type: mongoose.Schema.Types.ObjectId, ref: "tours" }],
   },

@@ -5,6 +5,7 @@ const protect = require("../middlewares/protect.middleware");
 
 router.route("/register").post(authController.registerUser);
 router.route("/login").post(authController.login);
+router.route("/refresh").post(authController.resetAccesTojenWithRefresh);
 
 router.get("/profile", protect, authController.getProfile);
 

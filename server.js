@@ -5,6 +5,7 @@ const tourRouter = require("./routes/tour.route.js");
 const authRouter = require("./routes/auth.route.js");
 const userRouter = require("./routes/user.route.js");
 const env = require("dotenv").config();
+let cookieParser = require("cookie-parser");
 
 const TOur = require("./models/user.model.js");
 
@@ -14,7 +15,7 @@ const TourGuide = require("./models/user.model.js");
 connectDb();
 
 app.use(express.json());
-
+app.use(cookieParser());
 app.use(mongana("dev"));
 
 app.use("/api/v1/tours", tourRouter);
